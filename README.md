@@ -16,4 +16,5 @@ Quero agradecer à equipe da Escola de Programação Apex por fornecer todo apre
 # Contato 
 
 Autor: Rodrigo Joel Luchtenberg
+
 Contato: devrodrigobnu@gmail.com
