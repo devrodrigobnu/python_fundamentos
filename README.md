@@ -1,4 +1,5 @@
-# python_fundamentos
+# Python_fundamentos
+Este repositório contém exercícios e aulas relacionadas ao Python, desenvolvidos como parte do currículo da Escola de Programação Apex.
 
 Neste repositório, você encontrará uma coleção de exercícios e aulas que abrangem os fundamentos do Python. Estes materiais foram criados para ajudar os estudantes e entusiastas da programação a aprender e aprimorar suas habilidades em Python.
 
