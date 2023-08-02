@@ -10,6 +10,16 @@ def contagem_regressiva():
         time.sleep(1)
     print('Contagem terminada')
 
+def contagem_regressiva_manual():
+    contador = 5
+    while contador > 0:
+        print(contador)
+        time.sleep(1)
+        contador -= 1
+    print('Contagem terminada')
+
+    
 if __name__ == '__main__':
     os.system('cls')
     contagem_regressiva()
+    contagem_regressiva_manual()

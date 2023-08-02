@@ -1,0 +1,61 @@
+Exercício 1:
+Crie uma função que receba um número inteiro e verifique se ele é par ou ímpar. A função deve retornar True se o número for par e False se for ímpar.
+
+Exercício 2:
+Crie uma função que receba uma lista de números e retorne a soma de todos os elementos da lista.
+
+Exercício 3:
+Crie uma função que receba uma lista de números e retorne o produto de todos os elementos da lista.
+
+Exercício 4:
+Crie uma função que receba um número inteiro e verifique se ele é um número primo. A função deve retornar True se o número for primo e False caso contrário.
+
+Exercício 5:
+Crie uma função que receba uma lista de números e retorne uma nova lista com os números em ordem inversa.
+
+Exercício 6:
+Crie uma função que receba uma lista de strings e retorne uma nova lista com todas as strings convertidas para letras maiúsculas.
+
+Exercício 7:
+Crie uma função que receba uma lista de palavras e um caractere. A função deve retornar uma nova lista contendo apenas as palavras que começam com o caractere fornecido.
+
+Exercício 8:
+Crie uma função que receba uma lista de números e retorne o maior valor presente na lista.
+
+Exercício 9:
+Crie uma função que receba uma lista de números e retorne o menor valor presente na lista.
+
+Exercício 10:
+Crie uma função que receba uma lista de números e retorne uma nova lista apenas com os números ímpares presentes na lista.
+
+Exercício 11:
+Crie uma função que receba uma lista de números e retorne a média dos valores presentes na lista.
+
+Exercício 12:
+Crie uma função que receba um número inteiro e exiba a tabuada desse número de 1 a 10.
+
+Exercício 13:
+Crie uma função que receba uma lista de palavras e retorne o total de caracteres em todas as palavras da lista.
+
+Exercício 14:
+Crie uma função que receba uma lista de números e retorne uma nova lista com o quadrado de cada número.
+
+Exercício 15:
+Crie uma função que receba uma lista de números e retorne o segundo maior valor presente na lista.
+
+Exercício 16:
+Crie uma função que receba uma lista de palavras e retorne a quantidade de palavras que têm pelo menos 5 caracteres.
+
+Exercício 17:
+Crie uma função que receba uma lista de números e retorne uma nova lista apenas com os números que estão nas posições ímpares da lista.
+
+Exercício 18:
+Crie uma função que receba uma lista de números e retorne a soma apenas dos números primos presentes na lista.
+
+Exercício 19:
+Crie uma função que receba uma lista de strings e retorne uma única string que seja a concatenação de todas as palavras da lista.
+
+Exercício 20:
+Crie uma função que receba um número inteiro e retorne a representação binária desse número.
+
+Espero que esses exercícios sejam úteis para continuar a praticar e aprimorar suas habilidades de programação! Lembre-se de que a prática constante é essencial para o aprendizado. Se tiver alguma dúvida ou precisar de ajuda em algum exercício específico, sinta-se à vontade para perguntar.
