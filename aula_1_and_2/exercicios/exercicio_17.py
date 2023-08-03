@@ -30,16 +30,29 @@ def obter_notas(quantidade_notas):
         notas.append(nota)
     return notas
 
-def calcular_media():
-    ...
 
-def exibir_resultado():
-    ...
+def calcular_media_notas(notas):
+    soma = 0
+    for valor in notas:
+        soma += valor
+    media = soma / len(notas)
+    return media
+    
 
-def calcular_media_notas():
-    ...
+def exibir_resultado(media):
+    print('A média é:', media)
+    if media == 6.0:
+        print('O aluno está aprovado!')
+    else: 
+        print('O aluno está reprovado!')
 
+def main():
+    quantidade = obter_quantidade_notas()
+    notas = obter_notas(quantidade)
+    media_calculada = calcular_media_notas(notas)
+    exibir_resultado(media_calculada)
 
 
 if __name__ == '__main__':
     os.system('cls')
+    main()
