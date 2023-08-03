@@ -1,7 +1,7 @@
 # Exercicio 17:
 # Crie um programa que solicite ao usuário que insira a 
 # quantidade de notas do aluno a serem calculadas.
-# Em seguida, peça para o usuário digitar as notas uma por uma. 
+#  Em seguida, peça para o usuário digitar as notas uma por uma. 
 # Armazene essas notas em uma lista.
 # Calcule a média das notas utilizando um for loop para somar todos os 
 # elementos da lista e dividir pela quantidade de notas.
@@ -20,6 +20,24 @@
 
 import os
 
+def obter_quantidade_notas():
+    return int(input('Digite a quantidade de notas do aluno: '))
+
+def obter_notas(quantidade_notas):
+    notas = []
+    for i in range(quantidade_notas):
+        nota = float(input(f'Digite a nota {i + 1}: '))
+        notas.append(nota)
+    return notas
+
+def calcular_media():
+    ...
+
+def exibir_resultado():
+    ...
+
+def calcular_media_notas():
+    ...
 
 
 
