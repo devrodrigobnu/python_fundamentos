@@ -7,19 +7,25 @@
 
 import os
 
-
-def filmes_favoritos():
+def le_filmes_favoritos():
     lista_filmes = []
-    for i in range(3):
-        item = input(f'Informe o {i + 1}º filme favorito: ')
-        lista_filmes.append(item)
+    while len(lista_filmes) < 3:
+        try:
+            filme_informado = input(f'Informe o {len(lista_filmes) + 1}º filme:')
+            if len(filme_informado) > 0:
+                lista_filmes.append(filme_informado)
+        except Exception as e:
+            print(f'Erro: {str(e)}')
+    return lista_filmes      
+  
+def mostrar_lista_filmes(lista_filmes):
+    for indice, nome_filme in enumerate(lista_filmes):
+        print(f'{indice + 1}º filme: {nome_filme}')
 
-    print('\nFilmes favoritos informados pelo usuário: ')
-    for item in lista_filmes:
-        print(item)
-
-
+def main():
+    lista_filmes = le_filmes_favoritos()
+    mostrar_lista_filmes(lista_filmes)
 
 if __name__ == '__main__':
     os.system('cls')
-    filmes_favoritos()
+    main()  
