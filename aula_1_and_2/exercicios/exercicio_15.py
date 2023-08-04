@@ -26,23 +26,32 @@ def recebe_notas_alunos():
     return notas
 
 
-def calcular_media_notas():
-    ...
+def calcular_media_notas(notas):
+    soma = 0
+    for valor in notas:
+        soma += valor
+    media = soma / len(notas)
+    return media
 
-def exibir_media_notas():
-    ...
+def exibir_media_notas(media):
+    print(f'A média é: {media:.2f}')
 
-
-
-
-
+def exibir_alta_e_minima(notas):
+    if not notas:
+        return
+    nota_maxima = max(notas)
+    nota_minima = min(notas)
+    print(f'A nota mais alta é: {nota_maxima:.2f}')
+    print(f'A nota mais baixa é: {nota_minima:.2f}')
 
 
 
 def main():
     notas_alunos = recebe_notas_alunos()
     print('Notas dos alunos:', notas_alunos)
-    
+    media = calcular_media_notas(notas_alunos)
+    exibir_media_notas(media)
+    exibir_alta_e_minima(notas_alunos)    
 
 if __name__ == '__main__':
     os.system('cls')
