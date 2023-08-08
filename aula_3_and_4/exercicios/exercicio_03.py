@@ -21,7 +21,7 @@ class CarroRodrigo:
     def ligar():
         if not CarroRodrigo.ligado:
             CarroRodrigo.ligado = True
-            print('Veículo ligado com sucesso')
+            print('VRUUUUUMMMMM, veículo ligado com sucesso!')
         else:
             print('Veiculo encontra-se desligado!')
     
@@ -51,10 +51,8 @@ class CarroRodrigo:
                 elif opcao == '4':
                     break
             except:
-                print('Informe uma opção válida')
+                print('\nInforme uma opção válida')
                 
-
-
 if __name__ == '__main__':
     os.system('cls')
     CarroRodrigo.script()
