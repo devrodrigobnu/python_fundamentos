@@ -6,9 +6,6 @@ As aulas estão organizadas para permitir uma progressão gradual e consistente 
 # Como Usar Este Repositório:
 Você pode clonar este repositório para o seu computador e explorar as pastas correspondentes a cada seção do curso. Cada pasta conterá arquivos com aulas teóricas e exercícios práticos. Recomendamos seguir a ordem das aulas, pois elas foram organizadas para construir conhecimento de maneira incremental.
 
-Agradecimentos:
-Gostaria de expressar meus agradecimentos à equipe da Escola de Programação Apex por fornecer o valioso conteúdo deste repositório.
-
 Contato:
 Autor: Rodrigo Luchtenberg  
 Email de Contato: devrodrigobnu@gmail.com
