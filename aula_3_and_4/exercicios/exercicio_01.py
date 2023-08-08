@@ -4,7 +4,7 @@
 # Crie métodos para depositar (depositar(valor))
 # e sacar (sacar(valor)) dinheiro da conta, além de um método para
 # exibir o saldo atual (exibir_saldo()).
-
+import os
 class ContaBancaria:
     mensagem_input = '\nInforme 1 para depositar'
     mensagem_input += '\nInforme 2 para sacar'
