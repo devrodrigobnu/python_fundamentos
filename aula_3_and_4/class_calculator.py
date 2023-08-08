@@ -59,6 +59,7 @@ class Calculator:
                 else:
                     print('Informe números positivos!')
             except KeyboardInterrupt:
+                print('\nPrograma encerrado manualmente!')
                 quit()
             except:
                 print('Informe números válidos!')
