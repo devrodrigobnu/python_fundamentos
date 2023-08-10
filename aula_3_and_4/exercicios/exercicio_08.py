@@ -1,4 +1,4 @@
-# 1 - Classe Produto:
+# 8 - Classe Produto:
 # Crie uma classe chamada Produto que represente um produto em uma loja. 
 # A classe deve ter os atributos: nome (private), preco
 # e codigo (public). Crie um construtor para inicializar esses atributos e 
