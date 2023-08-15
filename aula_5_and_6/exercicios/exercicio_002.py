@@ -17,18 +17,25 @@ class Banco:
         self.conta = conta
 
     @abstractmethod
-    def depositar(self):
+    def depositar(self, valor):
         pass
     def ver_saldo(self):
         pass
-    def sacar(self):
+    def sacar(self, valor):
         pass
 
 # Subclasse
 class ContaCorrente(Banco):
-    def sacar(self):
-        ...
+    def sacar(self, valor):
+        if valor <= self.__saldo:
+            self.__saldo -= valor
+            print(f'Saque de {valor} realizado.')
+        else:
+            print('Saldo insuficiente!')
+
     def depositar(self):
+        ...
+    def exibir_saldo(self):
         ...
     
 class ContaPoupanca(Banco):
@@ -41,4 +48,14 @@ class ContaPoupanca(Banco):
 
 
 if __name__ == '__main__':
-    ...
+    conta_1 = ContaCorrente(
+        nome='Rodrigo',
+        saldo=300,
+        conta='123456'
+    )
+
+    conta_2 = ContaCorrente(
+        nome='Felipe',
+        saldo=400,
+        conta='654321'
+    )
