@@ -13,39 +13,48 @@ from abc import ABC, abstractmethod
 class Banco:
     def __init__(self, nome, saldo, conta):
         self.nome = nome
-        self.__saldo = saldo
+        self.saldo = saldo
         self.conta = conta
 
     @abstractmethod
     def depositar(self, valor):
         pass
+
     def ver_saldo(self):
-        pass
+        return self.saldo
+    
     def sacar(self, valor):
         pass
+
 
 # Subclasse
 class ContaCorrente(Banco):
-    def sacar(self, valor):
-        if valor <= self.__saldo:
-            self.__saldo -= valor
-            print(f'Saque de {valor} realizado.')
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            print(f'Depósito de {valor}, feito com sucesso!')
         else:
-            print('Saldo insuficiente!')
+            print('Valor insuficiente!')
 
-    def depositar(self):
-        ...
-    def exibir_saldo(self):
-        ...
+    def sacar(self, valor):
+        if valor > 0 and valor <= self.saldo:
+            self.saldo -= valor
+            print(f'Saque de {valor}, feito com sucesso!')
+        else:
+            print('Valor insuficiente!')
+
     
+
 class ContaPoupanca(Banco):
-    def sacar(self):
-        ...
-    def depositar(self):
-        ...
+    def depositar(self, valor):
+        if valor > 0:
+            self.saldo += valor
+            print(f'Depósito de {valor}, feito com sucesso!')
+        else:
+            print('Valor insuficiente!')
 
-
-
+    def sacar(self, valor):
+        print('Operação não permita para conta poupança')
 
 if __name__ == '__main__':
     conta_1 = ContaCorrente(
@@ -59,3 +68,11 @@ if __name__ == '__main__':
         saldo=400,
         conta='654321'
     )
+
+    conta_1.depositar(500)
+    saldo_atual = conta_1.ver_saldo()
+    print(f'Saldo atual da conta 1: {saldo_atual}')
+
+    conta_2.sacar(200)
+    saldo_atual = conta_2.ver_saldo()
+    print(f'Saldo atual da conta 2: {saldo_atual}')
