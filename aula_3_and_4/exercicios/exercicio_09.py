@@ -5,15 +5,18 @@
 
 class Pessoa:
     def __init__(self, nome):
-        self._nome = nome
+        self.nome = nome
 
     def set_nome(self, novo_nome):
-        self._nome = novo_nome
+        self.nome = novo_nome
 
     def get_nome(self):
-        return self._nome
+        return self.nome
         
 if __name__ == '__main__':
 
     pessoa = Pessoa('João')
     print(pessoa.get_nome()) 
+
+    pessoa.set_nome('Mr_Robot')
+    print(pessoa.get_nome())

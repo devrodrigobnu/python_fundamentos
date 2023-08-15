@@ -21,29 +21,29 @@ class Funcionario:
         self.cargo = cargo
 
     # Getters
-    def get_nome(self):
+    @property
+    def nome(self):
         return self.__nome
     
     # Setters
-    def set_nome(self, novo_nome):
-        print(f'Setou nome {self.__nome} para {novo_nome}')
-        self.__nome = novo_nome
+    @nome.setter
+    def nome(self, nome_novo):
+        self.__nome = nome_novo
 
-    def aumentar_salario(self, aumento):
-        print(f'Aumentando salário de {self.__salario} para {self.__salario + aumento}')
-        self.__salario += aumento
-
-    # Exibindo infos
-    def exibir_informacoes(self):
-        print(f'Nome: {self.__nome}, Salário: {self.__salario}, Cargo: {self.cargo}')
-
-
-if __name__ == '__main__':
-    funcionario_1 = Funcionario('Rodrigo', 10000, 'Dev. Jr')
-    funcionario_1.exibir_informacoes()
-    funcionario_1.set_nome('Carlos')
-    funcionario_1.aumentar_salario(25000)
-    funcionario_1.exibir_informacoes()
-
+    def aumenta_salario(self, valor_acrescimo):
+        self.__salario = self.__salario + valor_acrescimo
     
 
+    def exibe_informacoes(self):
+        print(f'Funcionário {self.__nome}, possui salário {self.__salario} e exerce cargo {self.cargo}')
+
+if __name__ == '__main__':
+    funcionario_1 = Funcionario('Caue', 3000, 'dev')        
+    funcionario_2 = Funcionario('Rodrigo', 5000, 'hacker') 
+
+    print(funcionario_1.nome)       
+    print(funcionario_2.nome)              
+    funcionario_1.exibe_informacoes()
+    funcionario_2.exibe_informacoes()
+    funcionario_1.aumenta_salario(2000)
+    funcionario_1.exibe_informacoes()   
