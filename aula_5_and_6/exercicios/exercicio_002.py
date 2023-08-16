@@ -10,7 +10,7 @@
 from abc import ABC, abstractmethod
 
 # Classe Abastrata (modelo)
-class Banco:
+class Banco(ABC):
     def __init__(self, nome, saldo, conta):
         self.nome = nome
         self.saldo = saldo
@@ -20,30 +20,29 @@ class Banco:
     def depositar(self, valor):
         pass
 
+    @abstractmethod    
     def ver_saldo(self):
-        return self.saldo
-    
-    def sacar(self, valor):
         pass
-
+    
+    @abstractmethod
+    def sacar(self):
+        pass
 
 # Subclasse
 class ContaCorrente(Banco):
     def depositar(self, valor):
         if valor > 0:
             self.saldo += valor
-            print(f'Depósito de {valor}, feito com sucesso!')
+            print(f'Depósito de R$ {valor} realizado com sucesso!')
         else:
             print('Valor insuficiente!')
 
-    def sacar(self, valor):
-        if valor > 0 and valor <= self.saldo:
-            self.saldo -= valor
-            print(f'Saque de {valor}, feito com sucesso!')
-        else:
-            print('Valor insuficiente!')
-
+    def ver_saldo(self):
+        return self.saldo
     
+    def sacar(self, valor):
+        self.saldo -= valor
+        print(f'Saque de R$ {valor} realizado com sucesso!')
 
 class ContaPoupanca(Banco):
     def depositar(self, valor):
@@ -52,27 +51,35 @@ class ContaPoupanca(Banco):
             print(f'Depósito de {valor}, feito com sucesso!')
         else:
             print('Valor insuficiente!')
-
-    def sacar(self, valor):
-        print('Operação não permita para conta poupança')
+    
+    def ver_saldo(self):
+        return self.saldo
+    
+    def sacar(self):
+        print('Não são permitidos saques em conta poupança!')
+    
 
 if __name__ == '__main__':
-    conta_1 = ContaCorrente(
+    conta_1 = ContaPoupanca(
         nome='Rodrigo',
-        saldo=300,
+        saldo=0,
         conta='123456'
     )
 
     conta_2 = ContaCorrente(
         nome='Felipe',
-        saldo=400,
+        saldo=0,
         conta='654321'
     )
-
+    
     conta_1.depositar(500)
-    saldo_atual = conta_1.ver_saldo()
-    print(f'Saldo atual da conta 1: {saldo_atual}')
-
-    conta_2.sacar(200)
-    saldo_atual = conta_2.ver_saldo()
-    print(f'Saldo atual da conta 2: {saldo_atual}')
+    conta_1.sacar()
+    print(conta_1.ver_saldo())
+    conta_1.depositar(100)
+    print(conta_1.ver_saldo())
+    
+    print(conta_2.ver_saldo())
+    conta_2.sacar(2000)
+    print(conta_2.ver_saldo())
+    conta_2.depositar(2300)
+    print(conta_2.ver_saldo())
