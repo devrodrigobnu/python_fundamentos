@@ -48,14 +48,13 @@ class BancoDeDados:
     @staticmethod 
     def delete_linha(nome_tabela, id_linha):
         cursor = BancoDeDados.conexao.cursor()
-    
+
         id_del = f"""
             DELETE FROM {nome_tabela}
             WHERE id = {id_linha}
-
         """
 
-        cursor.execute(id_del)
+        cursor.execute{id_del}
         BancoDeDados.conexao.commit()
         cursor.close()
     
