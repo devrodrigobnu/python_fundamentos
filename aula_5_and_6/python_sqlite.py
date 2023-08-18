@@ -75,6 +75,7 @@ class BancoDeDados:
             print(row)
         BancoDeDados.conexao.commit()
         cursor.close()
+
     @staticmethod 
     def atualiza_linha(id_linha, nome_novo, numero_novo, email_novo):
         pass
@@ -130,13 +131,13 @@ Insira a operação (1 - 6): '''
                 BancoDeDados.mostra_tabela(tabela)
 
             elif operacao == 5:
-                pass
+               pass
+
             elif operacao == 6:
                 print('Programa encerrado.')
                 break
             else:
-                print('Informe uma operação válida!'
-            )
+                print('Informe uma operação válida!')
 
         except Exception as e:
             print(f'Ocorreu um erro: {str(e)}')
