@@ -46,13 +46,35 @@ class BancoDeDados:
         print(f'Dados: {nome_usuario} - {numero_usuario} - {email_usuario} inseridos em {nome_tabela} com sucesso.')
 
     @staticmethod 
-    def delete_linha(id_linha):
-        pass
+    def delete_linha(nome_tabela, id_linha):
+        cursor = BancoDeDados.conexao.cursor()
+    
+        id_del = f"""
+            DELETE FROM {nome_tabela}
+            WHERE id = {id_linha}
+
+        """
+
+        cursor.execute(id_del)
+        BancoDeDados.conexao.commit()
+        cursor.close()
     
     @staticmethod 
     def mostra_tabela(nome_tabela):
-        pass
+        cursor = BancoDeDados.conexao.cursor()
 
+        show_tabela = f"""
+            SELECT * FROM {nome_tabela}
+
+        """
+
+
+        cursor.execute(show_tabela)
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+        BancoDeDados.conexao.commit()
+        cursor.close()
     @staticmethod 
     def atualiza_linha(id_linha, nome_novo, numero_novo, email_novo):
         pass
@@ -94,10 +116,19 @@ Insira a operação (1 - 6): '''
                     numero_usuario=numero,
                     email_usuario=email
                 )
+
             elif operacao == 3:
-                pass
+                tabela = input('Informe o nome da tabela: ')
+                id_linha = input('Informe o ID da linha a ser deletada: ')
+
+                BancoDeDados.delete_linha(tabela, id_linha)
+                print(f'Linha {id_linha} deletada na tabela {tabela}.')
+
             elif operacao == 4:
-                pass
+                tabela = input('Informe o nome da tabela: ')
+
+                BancoDeDados.mostra_tabela(tabela)
+
             elif operacao == 5:
                 pass
             elif operacao == 6:
