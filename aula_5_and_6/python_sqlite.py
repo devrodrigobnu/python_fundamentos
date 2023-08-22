@@ -127,8 +127,8 @@ class BancoDeDados:
         if len(nome) >3:
             valida_nome = True
 
-            for numero in numeros:
-                if numero in nome:
+            for n in numeros:
+                if n in nome:
                     valida_nome = False
 
         valida_numero = False
@@ -139,15 +139,18 @@ class BancoDeDados:
 
             contador = 0
             for n in numeros_lista:
-                if n in numeros or n in lista_simbolos:
-                    if n in numeros:
-                        contador += 1
+                if n.isdigit() or n in lista_simbolos:
+                    contador += 1
                 elif n not in numeros and n not in lista_simbolos:
                     contador = 0
                     break
-            
+
             if contador >= 8:
                 valida_numero = True     
+
+        print(f'Nome é válido: {valida_nome}')
+        print(f'Número é válido: {valida_numero}')
+        print(f'E-mail é válido: {valida_email}')
 
         return valida_email and valida_nome and valida_numero
     
