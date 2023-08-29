@@ -33,7 +33,7 @@ class Alunos:
         return self.nome
     
     def get_idade(self):
-        return self.nome
+        return self.idade
     
     def get_nota(self):
         return self.nota
@@ -54,13 +54,84 @@ class Alunos:
         return Alunos.conexao
 
     @staticmethod
-    def criar_tabela(nome_tabela_nova):
+    def criar_tabela(Alunos):
         cursor = Alunos.conexao.cursor()
-        pass
+        
+        sql_string = f'''
+            cursor.execute('INSERT INTO Alunos (nome, idade, nota) VALUES (?, ?, ?)', (nome, idade, nota))
+        '''
+        cursor.execute(sql_string)
+        Alunos.conexao.commit()
+        cursor.close()
+        print(f'Tabela {Alunos} criada com sucesso!')
+
+    @staticmethod
+    def criar_aluno(nome, idade, nota):
+        conexao = sqlite3.connect('escola.db')
+        cursor = conexao.cursor()
+        cursor.execute('INSERT INTO Alunos (nome, idade, nota) VALUES (?, ?, ?)', (nome, idade, nota))   
+        conexao.commit()
+        conexao.close()
+
+    @staticmethod
+    def buscar_aluno_por_id(id):
+        conexao = sqlite3.connect('escola.db')
+        cursor = conexao.cursor()
+        cursor.execute('SELECT * FROM Alunos WHERE id = ?', (id))
+        resultado = cursor.fetchone()
+        conexao.close()
+        if resultado:
+            return Alunos(*resultado)
+        return None
     
+    @staticmethod
+    def listar_alunos():
+        conexao = sqlite3.connect('escola.db')
+        cursor = conexao.cursor()
+        cursor.execute('SELECT * FROM Alunos')
+        resultados = cursor.fetchall()
+        conexao.close()
+        alunos = [Alunos(*resultado) for resultado in resultados]
+        return alunos
 
-def database_manager():
-    conn = Alunos.criar_conexao('escola.db')
 
-    menu_interface = '''
-1 - 
+def main():
+    while True:
+        print("\nMenu:")
+        print("1 - Criar Aluno")
+        print("2 - Buscar Aluno por ID")
+        print("3 - Listar Alunos")
+        print("4 - Sair")
+        
+        escolha = input("Escolha uma opção: ")
+        
+        if escolha == "1":
+            nome = input("Digite o nome do aluno: ")
+            idade = int(input("Digite a idade do aluno: "))
+            nota = float(input("Digite a nota do aluno: "))
+            Alunos.criar_aluno(nome, idade, nota)
+            print("Aluno criado com sucesso!")
+
+        elif escolha == "2":
+            id_busca = int(input("Digite o ID do aluno: "))
+            aluno = Alunos.buscar_aluno_por_id(id_busca)
+            if aluno:
+                print(f"Detalhes do aluno:\nID: {aluno.get_id()}\nNome: {aluno.get_nome()}\nIdade: {aluno.get_idade()}\nNota: {aluno.get_nota()}")
+            else:
+                print("Aluno não encontrado.")
+
+        elif escolha == "3":
+            alunos = Alunos.listar_alunos()
+            print("Lista de Alunos:")
+            for aluno in alunos:
+                print(f"ID: {aluno.get_id()}, Nome: {aluno.get_nome()}, Idade: {aluno.get_idade()}, Nota: {aluno.get_nota()}")
+
+        elif escolha == "4":
+            print("Encerrando a aplicação.")
+            break
+
+        else:
+            print("Opção inválida. Escolha novamente.")
+
+if __name__ == "__main__":
+    main()
