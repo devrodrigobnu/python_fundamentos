@@ -32,7 +32,13 @@ class BancoDeDados:
     @staticmethod 
     def insere_dados(nome_tabela, nome_usuario, numero_usuario, email_usuario):
         cursor = BancoDeDados.conexao.cursor()
-
+        
+        cursor.execute(f"SHOW TABLES LIKE '{nome_tabela}'")
+        if cursor.fetchone() is None:
+            print(f"A tabela {nome_tabela} não existe.")
+            cursor.close()
+            return
+    
         sql_string = f"""
             INSERT INTO {nome_tabela}\
                 (nome, numero, email)\
@@ -49,15 +55,13 @@ class BancoDeDados:
     def delete_linha(nome_tabela, id_linha):
         cursor = BancoDeDados.conexao.cursor()
 
-        id_del = f"""
+        sql_delete = f"""
             DELETE FROM {nome_tabela}
             WHERE id = {id_linha}
         """
-
-        cursor.execute{id_del}
+        cursor.execute(sql_delete)
         BancoDeDados.conexao.commit()
         cursor.close()
-    
     @staticmethod 
     def mostra_tabela(nome_tabela):
         cursor = BancoDeDados.conexao.cursor()
@@ -66,9 +70,8 @@ class BancoDeDados:
             SELECT * FROM {nome_tabela}
 
         """
-
-
         cursor.execute(show_tabela)
+        
         rows = cursor.fetchall()
         for row in rows:
             print(row)
