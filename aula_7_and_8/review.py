@@ -106,7 +106,7 @@ def contar_letras_e_numeros(texto, letra):
     contador_numeros = 0 
     for item in texto:
         if item == letra:
-            contador += 1
+            contador_letras += 1
         elif item.isdigit():
             contador_numeros += 1
 
@@ -118,14 +118,18 @@ def contar_letras_e_numeros(texto, letra):
 # com base no valor que o colaborador ganha por hora e em quantos dias
 # aquele mes atual tem. Passar tbm a quantidade de horas trabalhadas por dia
 # Todas essas informacoes devem ser passadas por parametro
-def funcao():
-    ...
+def salario_mensal(valor_hora, dias_trabalhados, horas_dia):
+    if valor_hora <= 0 or dias_trabalhados <= 0 or horas_dia <= 0:
+        return "Parâmetros inválidos"
+    salario_mensal = valor_hora * horas_dia * dias_trabalhados
+    return salario_mensal
+
 
 
 # funcao para verificar quantos items existem em uma lista no total,
-#  mas também a quantidade de itens que sao string ou ints ou floats dentro da lista.
+# mas também a quantidade de itens que sao string ou ints ou floats dentro da lista.
 # A função deve retornar a quantidade de cada um. Quando os dados forem enviados pelo
-#  usuario via input, a lista precisa ter pelo menos 6 itens, dois send inteiros,
+# usuario via input, a lista precisa ter pelo menos 6 itens, dois send inteiros,
 # dois sendo floats e dois sendo strings antes de chamar a funcao
 def funcao():
     ...
@@ -146,6 +150,7 @@ def main():
     8 - Verificar se número é par ou ímpar
     9 - Rodar a calculadora
     10 - Contar letras em um texto
+    11 - Quanto um funcionário ganha durante um mês
     -> opção: '''
 
     while True:
@@ -273,7 +278,18 @@ def main():
                 quantidade_letras, quantidade_numeros = contar_letras_e_numeros(texto, letra)
                 print(f'A letra {letra} aparece {quantidade_letras} vezes no texto.')
                 print(f'Números de 1 a 9 aparecem {quantidade_numeros} vezes no texto.')
-                
+
+            elif funcao_selecionada == 11:
+                valor_hora = float(input('Informe o valor por hora: '))
+                dias_trabalhados = int(input('Informe quantos dias trabalhados no mês: '))
+                horas_dia = float(input('Informe quantas horas trabalhadas por dia: '))
+
+                salario = salario_mensal(valor_hora, dias_trabalhados, horas_dia)
+                if isinstance(salario, str):
+                    print(salario)
+                else:
+                    print(f'O funcionário ganhou R${salario:.2f} este mês.')   
+
         except Exception as e:
             print(f'Erro: {e}')
 
