@@ -98,6 +98,37 @@ def rodar_calculadora(numero_1, numero_2, operacao):
         resultado = 'Operação não reconhecida.'
     return resultado
 
+# funcao para verificar quantas vezes uma letra especificada pelo usuario aparece 
+# dentro de um texto tambem informado pelo usuario e mostre quantas vezes 
+# numeros de 1 a 9 aparecem caso tenha numeros no texto
+def contar_letras_e_numeros(texto, letra):
+    contador_letras = 0
+    contador_numeros = 0 
+    for item in texto:
+        if item == letra:
+            contador += 1
+        elif item.isdigit():
+            contador_numeros += 1
+
+    return contador_letras, contador_numeros
+
+
+
+# funcao para verificar quanto um funcionario ganhou durante um mes,
+# com base no valor que o colaborador ganha por hora e em quantos dias
+# aquele mes atual tem. Passar tbm a quantidade de horas trabalhadas por dia
+# Todas essas informacoes devem ser passadas por parametro
+def funcao():
+    ...
+
+
+# funcao para verificar quantos items existem em uma lista no total,
+#  mas também a quantidade de itens que sao string ou ints ou floats dentro da lista.
+# A função deve retornar a quantidade de cada um. Quando os dados forem enviados pelo
+#  usuario via input, a lista precisa ter pelo menos 6 itens, dois send inteiros,
+# dois sendo floats e dois sendo strings antes de chamar a funcao
+def funcao():
+    ...
 
 
 
@@ -114,6 +145,7 @@ def main():
     7 - Verificar menor numero em euma lista
     8 - Verificar se número é par ou ímpar
     9 - Rodar a calculadora
+    10 - Contar letras em um texto
     -> opção: '''
 
     while True:
@@ -233,8 +265,15 @@ def main():
                             print('Informe uma operação válida!')
                     except:
                         print('Informe um número válido!')
+            
+            elif funcao_selecionada == 10:
+                texto = input('Digite um texto: ')
+                letra = input('Digite a letra que deseja contar: ')
 
-
+                quantidade_letras, quantidade_numeros = contar_letras_e_numeros(texto, letra)
+                print(f'A letra {letra} aparece {quantidade_letras} vezes no texto.')
+                print(f'Números de 1 a 9 aparecem {quantidade_numeros} vezes no texto.')
+                
         except Exception as e:
             print(f'Erro: {e}')
 
