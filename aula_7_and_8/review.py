@@ -1,297 +1,414 @@
 import os
+from review_db import LogicaBanco
 
-def eh_positivo(numero_parametro):
-    if numero_parametro > 0:
-        return True
-    else:
-        return False
+# criar funcoes para criar tabela, inserir registros,
+# deletar registros, deletar tabela, 
+# pesquisar quantos registros tem, pesquisar o ultimo registro inserido
+# herdar classe do banco de dados e aplicar funcoes
 
-def sao_numeros_iguais(numero_parametro_1, numero_parametro_2):
-    if eh_positivo(numero_parametro_1) and eh_positivo(numero_parametro_2):
-        if numero_parametro_1 == numero_parametro_2:
+
+class LogicaProgramacao(LogicaBanco):
+    def __init__(self, nome):
+        self.nome = nome
+
+
+    def eh_positivo(self, numero_parametro):
+        if numero_parametro > 0:
             return True
         else:
             return False
-    else:
-        print('Informar apenas números positivos!')
 
 
-def qual_numero_eh_maior(numero_parametro_1, numero_parametro_2):
-    numero_maior = None
-    if eh_positivo(numero_parametro_1) and eh_positivo(numero_parametro_2):
-        if numero_parametro_1 > numero_parametro_2:
-            numero_maior = numero_parametro_1
-        elif numero_parametro_1 < numero_parametro_2:
-            numero_maior = numero_parametro_2
+    def sao_numeros_iguais(self, numero_parametro_1, numero_parametro_2):
+        if self.eh_positivo(numero_parametro_1) and self.eh_positivo(numero_parametro_2):
+            if numero_parametro_1 == numero_parametro_2:
+                return True
+            else:
+                return False
         else:
-            print('Os números são iguais! informe números diferentes!')
-    else:
-        print('Informe apenas números positivos!')
+            print('Informar apenas números positivos!')
 
-    return numero_maior
 
-def qual_numero_eh_menor(numero_parametro_1, numero_parametro_2):
-    numero_menor = None
-    if eh_positivo(numero_parametro_1) and eh_positivo(numero_parametro_2):
-        if numero_parametro_1 < numero_parametro_2:
-            numero_menor = numero_parametro_1
-        elif numero_parametro_2 < numero_parametro_1:
-            numero_menor = numero_parametro_2
+    def retorna_maior_numero(self, numero_parametro_1, numero_parametro_2):
+        numero_maior = None
+
+        if self.eh_positivo(numero_parametro_1) and self.eh_positivo(numero_parametro_2):
+            if numero_parametro_1 > numero_parametro_2:
+                numero_maior = numero_parametro_1
+            elif numero_parametro_1 < numero_parametro_2:
+                numero_maior = numero_parametro_2
+            else:
+                print('Os números são iguais! Informe números diferentes!')
         else:
-            print('Os números são iguas! Informe números diferentes!')
-    else:
-        print('Informe apenas números positivos!')
-    return numero_menor
+            print('Informar apenas números positivos!')
+
+        return numero_maior
 
 
-def verificar_impar_par(numero_parametro_1):
-    resultado = ''
+    def retorna_menor_numero(self, numero_parametro_1, numero_parametro_2):
+        numero_menor = None
 
-    if eh_positivo(numero_parametro_1):
-        if numero_parametro_1 % 2 == 0:
-            resultado = 'par'
+        if self.eh_positivo(numero_parametro_1) and self.eh_positivo(numero_parametro_2):
+            if numero_parametro_1 < numero_parametro_2:
+                numero_menor = numero_parametro_1
+            elif numero_parametro_1 > numero_parametro_2:
+                numero_menor = numero_parametro_2
+            else:
+                print('Os números são iguais! Informe números diferentes!')
         else:
-            resultado = 'impar'
-    else:
-        print('Informar apenas números positivos!')
-    return resultado
+            print('Informar apenas números positivos!')
+
+        return numero_menor
 
 
-def retorna_maior_numero_em_lista(lista_de_dados):
-    maior_numero = lista_de_dados[0]
-    for item in lista_de_dados:
-        if item > maior_numero:
-            maior_numero = item
-    return maior_numero
+    def verifica_se_eh_impar_ou_par(self, numero_parametro):
+        resultado = ''
 
-def retorna_menor_numero_em_lista(lista_de_dados):
-    maior_numero = lista_de_dados[0]
-    for item in lista_de_dados:
-        if item < maior_numero:
-            maior_numero = item
-    return maior_numero
-
-def retorna_quantidade_de_impares_e_pares_em_lista(lista_de_dados):
-    numeros_pares = 0
-    numeros_impares = 0
-
-    for numero in lista_de_dados:
-        if numero % 2 == 0:
-            numeros_pares += 1
+        if self.eh_positivo(numero_parametro):
+            if numero_parametro % 2 == 0:
+                resultado = 'par'
+            else:
+                resultado = 'ímpar'
         else:
-            numeros_impares += 1
-    return numeros_pares, numeros_impares
+            print('Informar apenas números positivos!')
 
-def rodar_calculadora(numero_1, numero_2, operacao):
-    if operacao == 1:
-        resultado = numero_1 + numero_2
-    elif operacao == 2:
-        resultado = numero_1 - numero_2
-    elif operacao == 3:
-        resultado = numero_1 * numero_2
-    elif operacao == 4:
-        if numero_2 != 0:
-            resultado = numero_1 / numero_2
-        else: 
-            resultado = 'Divisão por zero não é permitida'
-    else: 
-        resultado = 'Operação não reconhecida.'
-    return resultado
-
-# funcao para verificar quantas vezes uma letra especificada pelo usuario aparece 
-# dentro de um texto tambem informado pelo usuario e mostre quantas vezes 
-# numeros de 1 a 9 aparecem caso tenha numeros no texto
-def contar_letras_e_numeros(texto, letra):
-    contador_letras = 0
-    contador_numeros = 0 
-    for item in texto:
-        if item == letra:
-            contador_letras += 1
-        elif item.isdigit():
-            contador_numeros += 1
-
-    return contador_letras, contador_numeros
+        return resultado    
 
 
+    def retorna_maior_numero_em_lista(self, lista_de_dados):
+        maior_numero = lista_de_dados[0]
 
-# funcao para verificar quanto um funcionario ganhou durante um mes,
-# com base no valor que o colaborador ganha por hora e em quantos dias
-# aquele mes atual tem. Passar tbm a quantidade de horas trabalhadas por dia
-# Todas essas informacoes devem ser passadas por parametro
-def salario_mensal(valor_hora, dias_trabalhados, horas_dia):
-    if valor_hora <= 0 or dias_trabalhados <= 0 or horas_dia <= 0:
-        return "Parâmetros inválidos"
-    salario_mensal = valor_hora * horas_dia * dias_trabalhados
-    return salario_mensal
+        for item in lista_de_dados:
+            if item > maior_numero:
+                maior_numero = item
+
+        return maior_numero
 
 
+    def retorna_menor_numero_em_lista(self, lista_de_dados):
+        maior_numero = lista_de_dados[0]
 
-# funcao para verificar quantos items existem em uma lista no total,
-# mas também a quantidade de itens que sao string ou ints ou floats dentro da lista.
-# A função deve retornar a quantidade de cada um. Quando os dados forem enviados pelo
-# usuario via input, a lista precisa ter pelo menos 6 itens, dois send inteiros,
-# dois sendo floats e dois sendo strings antes de chamar a funcao
-def funcao():
-    ...
+        for item in lista_de_dados:
+            if item < maior_numero:
+                maior_numero = item
+
+        return maior_numero
 
 
+    def retorna_quantidade_de_impares_e_pares_em_lista(self, lista_de_dados):
+        contador_impares = 0
+        contador_pares = 0
 
-def main():
-    menu = f'''
-    \nSelecione a função:
-    0 - Sair
-    1 - Verificar se um número é positivo
-    2 - Verificar se dois números são iguais
-    3 - Verificar qual é o maior número
-    4 - Verificar qual é o menor número
-    5 - Verificar se é par ou ímpar
-    6 - Verificar maior numero em uma lista
-    7 - Verificar menor numero em euma lista
-    8 - Verificar se número é par ou ímpar
-    9 - Rodar a calculadora
-    10 - Contar letras em um texto
-    11 - Quanto um funcionário ganha durante um mês
-    -> opção: '''
+        for item in lista_de_dados:
+            if item % 2 == 0:
+                contador_pares += 1
+            else:
+                contador_impares += 1
 
-    while True:
-        try:
-            funcao_selecionada = int(input(menu))
-            if funcao_selecionada == 0:
-                print('O programa parou!')
-                break
+        return contador_pares, contador_impares
 
-            elif funcao_selecionada == 1:
-                numero = int(input('Informe um número: '))
-                if eh_positivo(numero) is True:
-                    print(f'O número {numero} é positivo')
-                else:
-                    print(f'o número {numero} é negativo')
-            
-            elif funcao_selecionada == 2:
-                numero_1 = int(input('Informe o primeiro número:'))
-                numero_2 = int(input('Informe o segundo número:'))
 
-                if sao_numeros_iguais(numero_1, numero_2) is True:
-                    print(f'O número {numero_1} é igual ao número {numero_2}')
-                else:
-                    print(f'O número {numero_1} é diferente do número {numero_2}')
-
-            elif funcao_selecionada == 3:
-                numero_1 = int(input('Digite o primeiro número: '))
-                numero_2 = int(input('Digite o segundo número: '))
-
-                numero_retornado = qual_numero_eh_maior(numero_1, numero_2)
-                if numero_retornado is not None:
-                    print(f'O maior número é: {numero_retornado}')
-
-            elif funcao_selecionada == 4:
-                numero_1 = int(input('Digite o primeiro número: '))
-                numero_2 = int(input('Digite o segundo número: '))
-
-                numero_retornado = qual_numero_eh_menor(numero_1, numero_2)
-                if numero_retornado is not None:
-                    print(f'O menor número é: {numero_retornado}')
-
-            elif funcao_selecionada == 5:
-                numero = int(input('Informe um número: '))
-                resultado = verificar_impar_par(numero)
-
-                if resultado != '':
-                    print(f'O número {numero} é {resultado}')
-
-            elif funcao_selecionada == 6:
-                lista_de_dados = []
-                contador = 0
-                limite = int(input('Informe quantos itens serão inseridos: '))
-
-                while contador < limite:
-                    try:
-                        item = int(input(f'Informe o {contador + 1}º ítem: '))
-                        lista_de_dados.append(item)
-                        contador += 1
-                    except:
-                        print('Informe um número válido!')
-
-                maior_numero = retorna_maior_numero_em_lista(lista_de_dados)          
-                print(f'O maior número da lista é: {maior_numero}')
-
-            elif funcao_selecionada == 7:
-                lista_de_dados = []
-                contador = 0
-                limite = int(input('Informe quantos itens serão inseridos: '))
-
-                while contador < limite:
-                    try:
-                        item = int(input(f'Informe o {contador + 1}º ítem: '))
-                        contador += 1
-                        lista_de_dados.append(item)
-                    except:
-                        print('Informe um número válido!')
-                menor_numero = retorna_menor_numero_em_lista(lista_de_dados)
-                print(f'O menor número da lista é: {menor_numero}')
+    def rodar_calculadora(self, numero_1, numero_2, operacao):
+        if operacao == 1:
+            return numero_1 + numero_2
+        elif operacao == 2:
+            return numero_1 - numero_2
+        elif operacao == 3:
+            return numero_1 * numero_2
+        elif operacao == 4:
+            return numero_1 / numero_2
         
-            elif funcao_selecionada == 8:
-                lista_de_dados = []
-                contador = 0
-                limite = int(input('Informe quantos itens serão inseridos: '))
 
-                while contador < limite:
+    def verifica_letra_em_string(self, letra, texto):
+        contador_letra = 0
+        contador_numero = 0
+        lista_texto = list(texto)
+        
+        for char in lista_texto:
+            if char.lower() == letra.lower():
+                contador_letra += 1
+            if char.isdigit():
+                contador_numero += 1
+
+        return contador_letra, contador_numero
+
+
+    def calcular_salario(self, dias_trabalhados, horas_diarias, valor_hora):
+        resultado = dias_trabalhados * horas_diarias * valor_hora
+        return resultado  
+
+
+    def organizador_lista(self, lista_de_dados):
+        contador_str = 0
+        contador_int = 0
+        contador_float = 0
+
+        for item in lista_de_dados:
+            if type(item) == str:
+                contador_str += 1
+            elif type(item) == int:
+                contador_int += 1
+            elif type(item) == float:
+                contador_float += 1
+
+        return contador_str, contador_int, contador_float
+
+
+    def valida_lista_dinamica(self, lista):
+        contador_str = 0
+        contador_int = 0
+        contador_float = 0
+
+        for item in lista:
+            if type(item) == str:
+                contador_str += 1
+            elif type(item) == int:
+                contador_int += 1
+            elif type(item) == float:
+                contador_float +=1
+
+        if contador_str >= 2 and contador_int >= 2 and contador_float >= 2:
+            return True
+
+        return False
+
+
+    def receber_lista_usuario(self):
+        lista_retorno = []
+
+        while True:
+            try:
+                item = input(
+                    f'Informe o {len(lista_retorno) + 1}º item (p para parar): '
+                )
+
+                if item != 'p':
                     try:
-                        item = int(input(f'Informe o {contador + 1}º ítem: '))
-                        contador += 1
-                        lista_de_dados.append(item)
+                        item = int(item)
+                        lista_retorno.append(item)
+                        continue                
                     except:
-                        print('Informe um número válido!')
-                pares, impares = retorna_quantidade_de_impares_e_pares_em_lista(lista_de_dados)
-                print('Itens da lista:', lista_de_dados)
-                print(f'Quantidade de pares: {pares}')
-                print(f'Quantidade de impares: {impares}')
-
-            elif funcao_selecionada == 9:
-
-                menu_operacoes = '''
-                \nOperações:
-                1- Somar
-                2- Subtrair
-                3- Multiplicar
-                4- Dividir
-                ->Opção: '''
-                numero_1 = int(input('Digite o primeiro número: '))
-                numero_2 = int(input('Digite o segundo número: '))
-                while True:
-                    try:
-                        operacao = int(input(menu_operacoes))
-
-                        if operacao in [1, 2, 3, 4]:
-                            resultado = rodar_calculadora(numero_1, numero_2, operacao)
-                            print('Resultado:', resultado)
-                            break
-                        else:
-                            print('Informe uma operação válida!')
-                    except:
-                        print('Informe um número válido!')
-            
-            elif funcao_selecionada == 10:
-                texto = input('Digite um texto: ')
-                letra = input('Digite a letra que deseja contar: ')
-
-                quantidade_letras, quantidade_numeros = contar_letras_e_numeros(texto, letra)
-                print(f'A letra {letra} aparece {quantidade_letras} vezes no texto.')
-                print(f'Números de 1 a 9 aparecem {quantidade_numeros} vezes no texto.')
-
-            elif funcao_selecionada == 11:
-                valor_hora = float(input('Informe o valor por hora: '))
-                dias_trabalhados = int(input('Informe quantos dias trabalhados no mês: '))
-                horas_dia = float(input('Informe quantas horas trabalhadas por dia: '))
-
-                salario = salario_mensal(valor_hora, dias_trabalhados, horas_dia)
-                if isinstance(salario, str):
-                    print(salario)
+                        try:
+                            item = float(item)
+                            lista_retorno.append(item)
+                            continue                
+                        except:
+                            pass
+                
+                    lista_retorno.append(item)
                 else:
-                    print(f'O funcionário ganhou R${salario:.2f} este mês.')   
+                    if len(lista_retorno) >= 6:
+                        print(f'Foram inseridos {len(lista_retorno)} itens!')
+                        break
+                    else:
+                        print('A lista precisa de pelo menos 6 itens!')
+            except Exception as e:
+                print(f'Erro: {str(e)}')
+        
+        return lista_retorno
 
-        except Exception as e:
-            print(f'Erro: {e}')
 
-if __name__ == '__main__':
-    main()
+    def main(self):
+        menu = f'''
+    \nSelecione a função:
+0 - Sair
+1 - eh_positivo
+2 - sao_numeros_iguais
+3 - retorna_maior_numero
+4 - retorna_menor_numero
+5 - verifica_se_eh_impar_ou_par
+6 - retorna_maior_numero_em_lista
+7 - retorna_menor_numero_em_lista
+8 - retorna_quantidade_de_impares_e_pares_em_lista
+9 - rodar_calculadora
+10 - verifica_letra_em_string
+11 - calcular_salario
+12 - organizador_lista
+--> opcao: '''
+
+        while True:
+            try:
+                registro_string = ''
+                funcao_selecionada = int(input(menu))
+
+                ##### INSERIR MENSAGENS NA VARIAVEL registro_string
+                ##### DENTRO DE TODOS OS ELIFS COM OPERACOES
+
+
+                if funcao_selecionada == 0:
+                    print('O programa encerrou')
+                    break
+
+                elif funcao_selecionada == 1:
+                    numero = int(input('Informe um número: '))
+
+                    if self.eh_positivo(numero) == True:
+                        print(f'O número {numero} é positivo')
+                        registro_string = f'(eh_positivo) O número {numero} é positivo'
+                    else:
+                        print(f'O número {numero} é negativo')
+                        registro_string = f'(eh_positivo) O número {numero} é negativo'
+
+
+                elif funcao_selecionada == 2:
+                    numero_1 = int(input('Informe o primeiro número: '))
+                    numero_2 = int(input('Informe o segundo número: '))
+
+                    if self.sao_numeros_iguais(numero_1, numero_2) == True:
+                        print(f'O número {numero_1} é igual ao número {numero_2}')
+                        registro_string = f'(sao_numeros_iguais) O número {numero_1} é igual ao número {numero_2}'
+                    else:
+                        print(f'O número {numero_1} é diferente do número {numero_2}')
+                        registro_string = f'(sao_numeros_iguais) O número {numero_1} é diferente do número {numero_2}'
+
+                elif funcao_selecionada == 3:
+                    numero_1 = int(input('Informe o primeiro número: '))
+                    numero_2 = int(input('Informe o segundo número: '))
+                    
+                    numero_retornado = self.retorna_maior_numero(numero_1, numero_2)
+                    if numero_retornado != None:
+                        print(f'O maior número é: {numero_retornado}')
+
+                elif funcao_selecionada == 4:
+                    numero_1 = int(input('Informe o primeiro número: '))
+                    numero_2 = int(input('Informe o segundo número: '))
+                    
+                    numero_retornado = self.retorna_maior_numero(numero_1, numero_2)
+                    if numero_retornado != None:
+                        print(f'O maiomenor número é: {numero_retornado}')
+
+                elif funcao_selecionada == 5:
+                    numero = int(input('Informe um número: '))
+                    resultado = self.verifica_se_eh_impar_ou_par(numero)
+
+                    if resultado != '':
+                        print(f'O número {numero} é {resultado}!')
+
+                elif funcao_selecionada == 6:
+                    lista_de_dados = []
+                    contador = 0
+                    limite = int(input('Informe quantos items serão inseridos: '))
+
+                    while contador < limite:
+                        try:
+                            item = int(input(f'Informe o {contador + 1}º item: '))
+                            lista_de_dados.append(item)
+                            contador += 1
+                        except:
+                            print('Informe um número válido')
+
+                    maior_numero = self.retorna_maior_numero_em_lista(lista_de_dados)
+                    print(f'O maior número da lista é: {maior_numero}')
+
+                elif funcao_selecionada == 7:
+                    lista_de_dados = []
+                    contador = 0
+                    limite = int(input('Informe quantos items serão inseridos: '))
+
+                    while contador < limite:
+                        try:
+                            item = int(input(f'Informe o {contador + 1}º item: '))
+                            lista_de_dados.append(item)
+                            contador += 1
+                        except:
+                            print('Informe um número válido')
+
+                    menor_numero = self.retorna_menor_numero_em_lista(lista_de_dados)
+                    print(f'O menor número da lista é: {menor_numero}')
+
+                elif funcao_selecionada == 8:
+                    lista_de_dados = []
+                    contador = 0
+                    limite = int(input('Informe quantos items serão inseridos: '))
+
+                    while contador < limite:
+                        try:
+                            item = int(input(f'Informe o {contador + 1}º item: '))
+                            lista_de_dados.append(item)
+                            contador += 1
+                        except:
+                            print('Informe um número válido')
+
+                    qty_par, qty_impar = self.retorna_quantidade_de_impares_e_pares_em_lista(lista_de_dados)
+                    print(f'A quantidade de pares é {qty_par} e de ímpares é {qty_impar}')
+
+                elif funcao_selecionada == 9:
+                    numero_1 = int(input('Informe o primeiro número: '))
+                    numero_2 = int(input('Informe o segundo número: '))
+
+                    menu_operacoes = ''' 
+                    \nOperações:
+    1 - Somar
+    2 - Subtrair
+    3 - Multiplicar
+    4 - Dividir
+    --> opcao: '''
+
+                    while True:
+                        try:
+                            operacao = int(input(menu_operacoes))
+                            if operacao in [1, 2, 3, 4]:
+                                resultado = self.rodar_calculadora(numero_1, numero_2, operacao)
+                                print(f'O resultado da operação é: {resultado}')
+                                break
+                            else:
+                                print('Informe uma operação válida!')
+                        except:
+                            print('Informe um número válido')
+
+                elif funcao_selecionada == 10:
+                    letra = input('Informe a letra: ')
+                    texto = input('Informe o texto: ')
+                    
+                    if len(letra) == 1 and len(texto) >= 10:
+                        letras, numeros = self.verifica_letra_em_string(letra, texto)
+                        print(f'A letra {letra} apareceu {letras}')
+                        print(f'Apareceram {numeros} numeros')
+                        print(f'dentro do texto: {texto}')
+                    else:
+                        print('Informe apenas uma letra', end=' ')
+                        print('e um texto com pelo menos 10 letras.')
+
+                elif funcao_selecionada == 11:
+                    try:
+                        dias = int(input('Informe a quantidade de dias: '))
+                        horas = int(input('Informe a quantidade de horas: '))
+                        valor = int(input('Informe o valor da hora: '))
+
+                        if dias >= 15 and horas >= 6 and valor >= 10:
+                            resultado = self.calcular_salario(
+                                dias_trabalhados=dias,
+                                horas_diarias=horas,
+                                valor_hora=valor
+                            )
+
+                            print(f'O resultado é: {resultado}')
+                        else:
+                            print(
+                                'Informe valores válidos!'
+                            )
+                    except Exception as e:
+                        print(f'Erro: {str(e)}')
+                        print('Informe números válidos!')
+                    
+                elif funcao_selecionada == 12:
+                    lista = self.receber_lista_usuario()
+                    if self.valida_lista_dinamica(lista) == True:
+                        strings, ints, floats = self.organizador_lista(lista)
+                        print(f'Na lista informada existem {strings} strings', end=' ')
+                        print(f'{ints} inteiros, e {floats} floats')
+                    else:
+                        print('A lista precisa de pelos menos', end=' ')
+                        print('2 strings, 2 ints e 2 floats!')
+
+                self.insere_registro('registros', registro_string)
+
+            except Exception as e:
+                print(f'Erro: {e}')    
+
+
+if __name__== '__main__':
+    os.system('cls')
+    objeto_da_classe = LogicaProgramacao('objeto 1')
+    print('rodando...', objeto_da_classe.nome)
+    objeto_da_classe.main()
