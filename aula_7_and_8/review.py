@@ -1,6 +1,7 @@
 import os
 from review_db import LogicaBanco
 
+<<<<<<< HEAD
 # criar funcoes para criar tabela, inserir registros,
 # deletar registros, deletar tabela, 
 # pesquisar quantos registros tem, pesquisar o ultimo registro inserido
@@ -12,6 +13,17 @@ class LogicaProgramacao(LogicaBanco):
         self.nome = nome
 
 
+=======
+
+# transformar funcoes em classe e testar
+# criar base de dados e uma classe para a base de dados
+# criar funcoes para criar tabela, inserir registros, deletar registros, deletar tabela, 
+# pesquisar quantos registros tem, pesquisar o ultimo registro inserido
+# herdar classe do banco de dados e aplicar funcoes
+
+
+class LogicaProgramacao():
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
     def eh_positivo(self, numero_parametro):
         if numero_parametro > 0:
             return True
@@ -166,7 +178,11 @@ class LogicaProgramacao(LogicaBanco):
                 contador_int += 1
             elif type(item) == float:
                 contador_float +=1
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
         if contador_str >= 2 and contador_int >= 2 and contador_float >= 2:
             return True
 
@@ -210,6 +226,7 @@ class LogicaProgramacao(LogicaBanco):
 
     def main(self):
         menu = f'''
+<<<<<<< HEAD
     \nSelecione a função:
 0 - Sair
 1 - eh_positivo
@@ -235,6 +252,28 @@ class LogicaProgramacao(LogicaBanco):
                 ##### DENTRO DE TODOS OS ELIFS COM OPERACOES
 
 
+=======
+        \nSelecione a função:
+    0 - Sair
+    1 - eh_positivo
+    2 - sao_numeros_iguais
+    3 - retorna_maior_numero
+    4 - retorna_menor_numero
+    5 - verifica_se_eh_impar_ou_par
+    6 - retorna_maior_numero_em_lista
+    7 - retorna_menor_numero_em_lista
+    8 - retorna_quantidade_de_impares_e_pares_em_lista
+    9 - rodar_calculadora
+    10 - verifica_letra_em_string
+    11 - calcular_salario
+    12 - organizador_lista
+    --> opcao: '''
+
+        while True:
+            try:
+                funcao_selecionada = int(input(menu))
+
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
                 if funcao_selecionada == 0:
                     print('O programa encerrou')
                     break
@@ -244,11 +283,16 @@ class LogicaProgramacao(LogicaBanco):
 
                     if self.eh_positivo(numero) == True:
                         print(f'O número {numero} é positivo')
+<<<<<<< HEAD
                         registro_string = f'(eh_positivo) O número {numero} é positivo'
                     else:
                         print(f'O número {numero} é negativo')
                         registro_string = f'(eh_positivo) O número {numero} é negativo'
 
+=======
+                    else:
+                        print(f'O número {numero} é negativo')
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
 
                 elif funcao_selecionada == 2:
                     numero_1 = int(input('Informe o primeiro número: '))
@@ -256,10 +300,15 @@ class LogicaProgramacao(LogicaBanco):
 
                     if self.sao_numeros_iguais(numero_1, numero_2) == True:
                         print(f'O número {numero_1} é igual ao número {numero_2}')
+<<<<<<< HEAD
                         registro_string = f'(sao_numeros_iguais) O número {numero_1} é igual ao número {numero_2}'
                     else:
                         print(f'O número {numero_1} é diferente do número {numero_2}')
                         registro_string = f'(sao_numeros_iguais) O número {numero_1} é diferente do número {numero_2}'
+=======
+                    else:
+                        print(f'O número {numero_1} é diferente do número {numero_2}')
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
 
                 elif funcao_selecionada == 3:
                     numero_1 = int(input('Informe o primeiro número: '))
@@ -401,14 +450,26 @@ class LogicaProgramacao(LogicaBanco):
                         print('A lista precisa de pelos menos', end=' ')
                         print('2 strings, 2 ints e 2 floats!')
 
+<<<<<<< HEAD
                 self.insere_registro('registros', registro_string)
 
+=======
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
             except Exception as e:
                 print(f'Erro: {e}')    
 
 
+<<<<<<< HEAD
 if __name__== '__main__':
     os.system('cls')
     objeto_da_classe = LogicaProgramacao('objeto 1')
     print('rodando...', objeto_da_classe.nome)
     objeto_da_classe.main()
+=======
+
+if __name__== '__main__':
+    os.system('cls')
+    objeto_da_classe = LogicaProgramacao()
+    objeto_da_classe.main()
+    
+>>>>>>> b635c024638af33dc092b0ecae9cd7a8817f2231
