@@ -1,0 +1,5 @@
+python funcional
+segundo paradigma (livro)
+
+oque é uma funcao: Uma função é um bloco de código que pode ser chamado conforme a necessidade
+este bloco de código tem a caracterista de responsabilidade unica
