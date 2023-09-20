@@ -1,2 +1,10 @@
 Codigo e ambientação com python estruturado
 primeiro paradigma (papíro)
+
+
+estrutura de controle de fluxo - As estruturas de controle de 
+fluxo permitirão desenvolver algoritmos capazes de testar expressões
+e, a partir delas, seguir pelas instruções de forma não linear. 
+Seleção: se (if), escolha (switch). Repetição: enquanto (while), 
+repita (repeat), faça (do), para (for).
+
