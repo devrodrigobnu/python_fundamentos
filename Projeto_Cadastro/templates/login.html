@@ -10,9 +10,19 @@
 </head>
 
 <body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul id="messages" class="list-unstyled">
+        {% for message in messages %}
+            <li class="alert alert-success">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
     <div class="container">
         <h1>Faça seu Login</h1>
-        <form action="">
+        <form action="{{ url_for('autenticar') }}" method="post">
+
             <p><label for="">Nome de Usuário</label>
                 <input type="text" name="usuario">
             </p>
